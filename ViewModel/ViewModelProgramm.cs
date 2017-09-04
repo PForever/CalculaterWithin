@@ -20,28 +20,26 @@ namespace ViewModel
             set => SetValue(TextBoxTextProperty, value);
         }
 
-        public static readonly DependencyProperty PrintProperty = DependencyProperty.Register(
-            nameof(Print), typeof(RoutedCommand), typeof(ViewModelProgramm), new PropertyMetadata(default(RoutedCommand)));
+        public static readonly DependencyProperty PrintProperty = DependencyProperty.Register(nameof(Print), typeof(CalcCommand), typeof(ViewModelProgramm), new PropertyMetadata(default(CalcCommand)));
 
-        public RoutedCommand Print
+        public CalcCommand Print
         {
-            get => (RoutedCommand) GetValue(PrintProperty);
+            get => (CalcCommand) GetValue(PrintProperty);
             set => SetValue(PrintProperty, value);
         }
 
-        public static readonly DependencyProperty PrintBildProperty = DependencyProperty.Register(
-            nameof(PrintBild), typeof(CommandBinding), typeof(ViewModelProgramm), new PropertyMetadata(default(CommandBinding)));
+        public static readonly DependencyProperty DelProperty = DependencyProperty.Register(nameof(Del), typeof(CalcCommand), typeof(ViewModelProgramm), new PropertyMetadata(default(CalcCommand)));
 
-        public CommandBinding PrintBild
+        public CalcCommand Del
         {
-            get => (CommandBinding) GetValue(PrintBildProperty);
-            set => SetValue(PrintBildProperty, value);
+            get => (CalcCommand)GetValue(DelProperty);
+            set => SetValue(DelProperty, value);
         }
+
         public ViewModelProgramm()
         {
-            Print = new RoutedCommand();
-            ExecutedPrintCommand += ExecutedPrintCommandHandler;
-            PrintBild = new CommandBinding(Print);
+            Print = new CalcCommand((text) => TextBoxText = TextBoxText == "0" ? text : TextBoxText += text);
+            Del = new CalcCommand((text) => TextBoxText = String.IsNullOrEmpty(TextBoxText) || TextBoxText.Length == 1 ? "0" : TextBoxText.Substring(0, TextBoxText.Length - 1));
         }
 
         public static readonly DependencyProperty ExecutedPrintCommandProperty = DependencyProperty.Register(
@@ -52,11 +50,6 @@ namespace ViewModel
             get => (Action<object, ExecutedRoutedEventArgs>) GetValue(ExecutedPrintCommandProperty);
             set => SetValue(ExecutedPrintCommandProperty, value);
         }
-
-        private void ExecutedPrintCommandHandler(object sender, ExecutedRoutedEventArgs e)
-        {
-            TextBoxText = e.RoutedEvent.Name;
-        }
     }
 
     public class CalcCommand : ICommand
@@ -66,13 +59,19 @@ namespace ViewModel
             return true;
         }
 
-        //public Action ActionCommand;
+        public Action<string> ActionCommand;
 
         public void Execute(object parameter)
         {
-            //ActionCommand?.Invoke();
+            var text = parameter as string;
+            if(text != null) ActionCommand?.Invoke(text);
         }
 
+        public CalcCommand(Action<string> actionCommand)
+        {
+            ActionCommand = actionCommand;
+        }
         public event EventHandler CanExecuteChanged;
     }
 }
+

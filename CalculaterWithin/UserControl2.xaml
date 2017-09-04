@@ -14,11 +14,9 @@
     <UserControl.Resources>
         <Style TargetType="Button">
             <Setter Property="Command" Value="{Binding Print}" />
+            <Setter Property="CommandParameter" Value="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Content}" />
         </Style>
     </UserControl.Resources>
-    <UserControl.CommandBindings>
-        <CommandBinding Command="local:">
-    </UserControl.CommandBindings>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -27,7 +25,6 @@
         <ScrollViewer CanContentScroll="True" VerticalScrollBarVisibility="Disabled">
             <StackPanel CanHorizontallyScroll="True">
                 <TextBox
-                    x:Name="textBox"
                     HorizontalContentAlignment="Right"
                     HorizontalScrollBarVisibility="Visible"
                     Text="{Binding TextBoxText, Mode=TwoWay}"
@@ -150,6 +147,7 @@
             <Button
                 Grid.Row="4"
                 Grid.Column="4"
+                Command="{Binding Del}"
                 Content="c" />
         </Grid>
 
