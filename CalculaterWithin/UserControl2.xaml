@@ -1,0 +1,157 @@
+﻿<UserControl
+    x:Class="CalculaterWithin.UserControl2"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:ViewModel;assembly=ViewModel"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="300"
+    d:DesignWidth="300"
+    mc:Ignorable="d">
+    <UserControl.DataContext>
+        <local:ViewModelProgramm />
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Command" Value="{Binding Print}" />
+        </Style>
+    </UserControl.Resources>
+    <UserControl.CommandBindings>
+        <CommandBinding Command="local:">
+    </UserControl.CommandBindings>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <ScrollViewer CanContentScroll="True" VerticalScrollBarVisibility="Disabled">
+            <StackPanel CanHorizontallyScroll="True">
+                <TextBox
+                    x:Name="textBox"
+                    HorizontalContentAlignment="Right"
+                    HorizontalScrollBarVisibility="Visible"
+                    Text="{Binding TextBoxText, Mode=TwoWay}"
+                    TextChanged="TextBoxBase_OnTextChanged" />
+            </StackPanel>
+        </ScrollViewer>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Button
+                Grid.Row="0"
+                Grid.Column="0"
+                Content="1" />
+            <Button
+                Grid.Row="0"
+                Grid.Column="1"
+                Content="2" />
+            <Button
+                Grid.Row="0"
+                Grid.Column="2"
+                Content="3" />
+            <Button
+                Grid.Row="0"
+                Grid.Column="3"
+                Content="+" />
+            <Button
+                Grid.Row="0"
+                Grid.Column="4"
+                Content="-" />
+
+            <Button
+                Grid.Row="1"
+                Grid.Column="0"
+                Content="4" />
+            <Button
+                Grid.Row="1"
+                Grid.Column="1"
+                Content="5" />
+            <Button
+                Grid.Row="1"
+                Grid.Column="2"
+                Content="6" />
+            <Button
+                Grid.Row="1"
+                Grid.Column="3"
+                Content="*" />
+            <Button
+                Grid.Row="1"
+                Grid.Column="4"
+                Content="/" />
+
+            <Button
+                Grid.Row="2"
+                Grid.Column="0"
+                Content="7" />
+            <Button
+                Grid.Row="2"
+                Grid.Column="1"
+                Content="8" />
+            <Button
+                Grid.Row="2"
+                Grid.Column="2"
+                Content="9" />
+            <Button
+                Grid.Row="2"
+                Grid.Column="3"
+                Grid.ColumnSpan="2"
+                Content="=" />
+            <!--<Button Grid.Row="2" Grid.Column="4" Content="*"/>-->
+
+            <Button
+                Grid.Row="3"
+                Grid.Column="0"
+                Content="+/-" />
+            <Button
+                Grid.Row="3"
+                Grid.Column="1"
+                Content="0" />
+            <Button
+                Grid.Row="3"
+                Grid.Column="2"
+                Content="." />
+            <Button
+                Grid.Row="3"
+                Grid.Column="3"
+                Content="(" />
+            <Button
+                Grid.Row="3"
+                Grid.Column="4"
+                Content=")" />
+
+            <Button
+                Grid.Row="4"
+                Grid.Column="0"
+                Content="Sin" />
+            <Button
+                Grid.Row="4"
+                Grid.Column="1"
+                Content="Cos" />
+            <Button
+                Grid.Row="4"
+                Grid.Column="2"
+                Content="Ln" />
+            <Button
+                Grid.Row="4"
+                Grid.Column="3"
+                Content="^" />
+            <Button
+                Grid.Row="4"
+                Grid.Column="4"
+                Content="c" />
+        </Grid>
+
+    </Grid>
+</UserControl>
