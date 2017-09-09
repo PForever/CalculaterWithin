@@ -13,7 +13,7 @@
     </UserControl.DataContext>
     <UserControl.Resources>
         <Style TargetType="Button">
-            <Setter Property="Command" Value="{Binding Print}" />
+            <Setter Property="Command" Value="{Binding Calc}" />
             <Setter Property="CommandParameter" Value="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Content}" />
         </Style>
     </UserControl.Resources>
@@ -104,13 +104,15 @@
                 Grid.Row="2"
                 Grid.Column="3"
                 Grid.ColumnSpan="2"
-                Content="=" />
+                Content="=" 
+                Command="{Binding GetResault}" />
             <!--<Button Grid.Row="2" Grid.Column="4" Content="*"/>-->
 
             <Button
                 Grid.Row="3"
                 Grid.Column="0"
-                Content="+/-" />
+                Content="+/-"
+                Command="{Binding UnoMin}"/>
             <Button
                 Grid.Row="3"
                 Grid.Column="1"
